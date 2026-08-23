@@ -217,7 +217,13 @@ veloop-tap-earn/
             └── BottomNav.jsx         # Home / Tap & Earn / Mine / Wallet / Profile
 ```
 
-## Getting started
+## Deployment
+
+See [`DEPLOYMENT.md`](./DEPLOYMENT.md) for a step-by-step guide to deploy
+this for free: frontend on Vercel, backend on Render, database on
+MongoDB Atlas.
+
+## Getting started (local development)
 
 ### 1. Backend
 
