@@ -1,0 +1,67 @@
+.league-page {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 20px 16px 100px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.league-page__header {
+  margin-bottom: 16px;
+}
+
+.league-page__title {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.league-page__season {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--veloop-text-secondary);
+}
+
+.league-page__countdown {
+  color: var(--veloop-gold);
+  font-weight: 600;
+}
+
+.league-page__body {
+  flex: 1;
+}
+
+.league-page__sticky {
+  position: sticky;
+  bottom: 76px;
+}
+
+.league-page__rewards {
+  margin-top: 20px;
+  background: var(--veloop-surface-1);
+  border: 1px solid var(--veloop-border);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+}
+
+.league-page__rewards-title {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--veloop-text-secondary);
+}
+
+.league-page__reward-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  padding: 5px 0;
+  color: var(--veloop-text-secondary);
+}
+
+.league-page__reward-value {
+  color: var(--veloop-gold);
+  font-weight: 600;
+}

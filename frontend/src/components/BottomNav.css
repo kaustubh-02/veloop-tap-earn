@@ -1,0 +1,36 @@
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  background: rgba(22, 24, 39, 0.92);
+  backdrop-filter: blur(16px);
+  border-top: 1px solid var(--veloop-border);
+  padding: 8px 4px calc(8px + env(safe-area-inset-bottom));
+  z-index: 40;
+}
+
+.bottom-nav__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 6px 10px;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  color: var(--veloop-text-tertiary);
+  font-size: 11px;
+  font-weight: 600;
+  min-width: 56px;
+}
+
+.bottom-nav__icon {
+  font-size: 18px;
+}
+
+.bottom-nav__item--active {
+  color: var(--veloop-gold);
+  background: var(--veloop-gold-soft);
+}

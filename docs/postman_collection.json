@@ -1,0 +1,387 @@
+{
+  "info": {
+    "name": "VELoop Rewards - Tap & Earn API",
+    "description": "Full API surface for the VELoop Tap & Earn MERN backend.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5000/api" },
+    { "key": "accessToken", "value": "" },
+    { "key": "refreshToken", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{baseUrl}}/auth/register",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"tester@veloop.dev\",\n  \"password\": \"Test@12345\",\n  \"displayName\": \"Tester\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{baseUrl}}/auth/login",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@veloop.dev\",\n  \"password\": \"Admin@12345\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Refresh",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{baseUrl}}/auth/refresh",
+            "body": { "mode": "raw", "raw": "{\n  \"refreshToken\": \"{{refreshToken}}\"\n}" }
+          }
+        },
+        {
+          "name": "Me",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+            "url": "{{baseUrl}}/auth/me"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tap Core",
+      "item": [
+        {
+          "name": "Get State",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+            "url": "{{baseUrl}}/tap/state"
+          }
+        },
+        {
+          "name": "Get Request ID",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+            "url": "{{baseUrl}}/tap/request-id"
+          }
+        },
+        {
+          "name": "Send Tap",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{accessToken}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": "{{baseUrl}}/tap",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"requestId\": \"REPLACE-WITH-UUID\",\n  \"clientSentAt\": \"2026-08-23T00:00:00.000Z\",\n  \"precisionTapHit\": false\n}"
+            }
+          }
+        },
+        {
+          "name": "History",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+            "url": "{{baseUrl}}/tap/history?limit=30"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Upgrades / Boost / Energy",
+      "item": [
+        {
+          "name": "Purchase Upgrade - Capacity",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{accessToken}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": "{{baseUrl}}/tap/upgrade",
+            "body": { "mode": "raw", "raw": "{\n  \"type\": \"energyCapacity\"\n}" }
+          }
+        },
+        {
+          "name": "Purchase Upgrade - Multitap x2",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{accessToken}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": "{{baseUrl}}/tap/upgrade",
+            "body": { "mode": "raw", "raw": "{\n  \"type\": \"multitap\",\n  \"tier\": \"x2\"\n}" }
+          }
+        },
+        {
+          "name": "Activate Boost",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+            "url": "{{baseUrl}}/tap/boost/activate"
+          }
+        },
+        {
+          "name": "Purchase Energy Bank",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+            "url": "{{baseUrl}}/tap/energy-bank/purchase"
+          }
+        },
+        {
+          "name": "Purchase Energy Shield",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+            "url": "{{baseUrl}}/tap/shield/purchase"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Missions & Daily Challenge",
+      "item": [
+        {
+          "name": "Get Missions",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+            "url": "{{baseUrl}}/tap/missions"
+          }
+        },
+        {
+          "name": "Claim Mission",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+            "url": "{{baseUrl}}/tap/missions/REPLACE_WITH_MISSION_ID/claim"
+          }
+        },
+        {
+          "name": "Get Daily Challenge",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+            "url": "{{baseUrl}}/tap/daily-challenge"
+          }
+        },
+        {
+          "name": "Claim Daily Challenge",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+            "url": "{{baseUrl}}/tap/daily-challenge/claim"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Lucky Tap / Spin",
+      "item": [
+        {
+          "name": "Get Lucky Status",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+            "url": "{{baseUrl}}/tap/lucky"
+          }
+        },
+        {
+          "name": "Spin",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{accessToken}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": "{{baseUrl}}/tap/lucky/spin",
+            "body": { "mode": "raw", "raw": "{\n  \"requestId\": \"REPLACE-WITH-UUID\"\n}" }
+          }
+        }
+      ]
+    },
+    {
+      "name": "League & Season",
+      "item": [
+        {
+          "name": "Get League",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+            "url": "{{baseUrl}}/tap/league"
+          }
+        },
+        {
+          "name": "Get Season",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+            "url": "{{baseUrl}}/tap/season"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Ads",
+      "item": [
+        {
+          "name": "Get Opportunity",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+            "url": "{{baseUrl}}/ads/opportunity?placement=interstitial"
+          }
+        },
+        {
+          "name": "Log Event",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{accessToken}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": "{{baseUrl}}/ads/event",
+            "body": { "mode": "raw", "raw": "{\n  \"placement\": \"interstitial\",\n  \"eventType\": \"shown\"\n}" }
+          }
+        },
+        {
+          "name": "Claim Reward",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{accessToken}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": "{{baseUrl}}/ads/claim",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"placement\": \"video\",\n  \"opportunityEventId\": \"REPLACE_WITH_EVENT_ID\"\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin",
+      "item": [
+        {
+          "name": "Get Config",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+            "url": "{{baseUrl}}/admin/config"
+          }
+        },
+        {
+          "name": "Update Config",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{accessToken}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": "{{baseUrl}}/admin/config",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"config\": { \"boost\": { \"multiplier\": 3 } },\n  \"reason\": \"Testing higher boost multiplier\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Config Audit",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+            "url": "{{baseUrl}}/admin/config/audit"
+          }
+        },
+        {
+          "name": "Tap Analytics",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+            "url": "{{baseUrl}}/admin/analytics/taps"
+          }
+        },
+        {
+          "name": "Reward Analytics",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+            "url": "{{baseUrl}}/admin/analytics/rewards"
+          }
+        },
+        {
+          "name": "Anti-Abuse Analytics",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+            "url": "{{baseUrl}}/admin/analytics/anti-abuse"
+          }
+        },
+        {
+          "name": "Ad Analytics",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+            "url": "{{baseUrl}}/admin/analytics/ads"
+          }
+        },
+        {
+          "name": "Get Seasons",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+            "url": "{{baseUrl}}/admin/seasons"
+          }
+        },
+        {
+          "name": "Force Rollover",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+            "url": "{{baseUrl}}/admin/seasons/rollover"
+          }
+        },
+        {
+          "name": "Ledger Search",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+            "url": "{{baseUrl}}/admin/ledger?limit=50"
+          }
+        },
+        {
+          "name": "Adjust Balance",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{accessToken}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": "{{baseUrl}}/admin/ledger/adjust",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"REPLACE_WITH_USER_ID\",\n  \"currency\": \"tokens\",\n  \"amount\": 100,\n  \"direction\": \"credit\",\n  \"reason\": \"Manual compensation\"\n}"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

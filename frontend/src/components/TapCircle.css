@@ -1,0 +1,186 @@
+.tap-circle-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+.tap-circle-stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tap-circle {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  border: none;
+  background: radial-gradient(circle at 35% 30%, #2c3156 0%, #1b1e36 70%);
+  box-shadow:
+    0 0 0 1px var(--veloop-border-strong),
+    0 20px 50px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: transform var(--duration-fast) var(--ease-standard);
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.tap-circle::before {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border-radius: 50%;
+  border: 1px solid rgba(242, 181, 68, 0.25);
+}
+
+.tap-circle:active,
+.tap-circle--pressed {
+  transform: scale(0.96);
+}
+
+.tap-circle--disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.tap-circle__glow {
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(circle, var(--veloop-gold-glow) 0%, transparent 65%);
+  opacity: 0.5;
+  transition: opacity var(--duration-medium) var(--ease-standard);
+  pointer-events: none;
+}
+
+.tap-circle--pressed .tap-circle__glow {
+  opacity: 0.9;
+}
+
+.tap-circle__coin {
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 44px;
+  letter-spacing: 0.02em;
+  background: linear-gradient(180deg, #ffe8ac 0%, var(--veloop-gold) 60%, #c98a1f 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 2px 12px rgba(242, 181, 68, 0.25);
+  user-select: none;
+}
+
+.tap-circle__ripple {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid var(--veloop-gold-glow);
+  animation: tap-ripple 650ms var(--ease-standard) forwards;
+  pointer-events: none;
+}
+
+@keyframes tap-ripple {
+  0% {
+    opacity: 0.9;
+    transform: scale(0.85);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.35);
+  }
+}
+
+.tap-circle__precision-target {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 2px solid var(--veloop-blue);
+  background: var(--veloop-blue-soft);
+  animation: precision-pulse 900ms ease-in-out infinite;
+  pointer-events: none;
+  z-index: 3;
+}
+
+@keyframes precision-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 var(--veloop-blue-glow);
+  }
+  50% {
+    box-shadow: 0 0 0 8px transparent;
+  }
+}
+
+.tap-circle__combo {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: 0.06em;
+  color: var(--veloop-blue);
+  animation: combo-pop 260ms var(--ease-standard);
+}
+
+@keyframes combo-pop {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.tap-circle__rejection {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--veloop-text-secondary);
+  background: rgba(0, 0, 0, 0.3);
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+  animation: rejection-fade 1600ms ease-out forwards;
+}
+
+@keyframes rejection-fade {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 4px);
+  }
+  15% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .tap-circle {
+    width: 180px;
+    height: 180px;
+  }
+  .tap-circle__coin {
+    font-size: 36px;
+  }
+}

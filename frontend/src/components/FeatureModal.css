@@ -1,0 +1,36 @@
+.feature-modal__status {
+  background: var(--veloop-surface-1);
+  border: 1px solid var(--veloop-border);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  margin-bottom: 14px;
+}
+
+.feature-modal__status-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  padding: 4px 0;
+  color: var(--veloop-text-secondary);
+}
+
+.feature-modal__status-row strong {
+  color: var(--veloop-text-primary);
+}
+
+.feature-modal__note {
+  font-size: 12px;
+  color: var(--veloop-text-tertiary);
+  margin: 6px 0 14px;
+  line-height: 1.5;
+}
+
+.feature-modal__error {
+  background: rgba(239, 90, 111, 0.12);
+  border: 1px solid rgba(239, 90, 111, 0.3);
+  color: var(--veloop-danger);
+  font-size: 12px;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 10px;
+}

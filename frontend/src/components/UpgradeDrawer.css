@@ -1,0 +1,39 @@
+.upgrade-drawer__tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 14px;
+  overflow-x: auto;
+}
+
+.upgrade-drawer__tab {
+  flex: 0 0 auto;
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  background: var(--veloop-surface-1);
+  border: 1px solid var(--veloop-border);
+  color: var(--veloop-text-secondary);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.upgrade-drawer__tab--active {
+  background: var(--veloop-blue-soft);
+  border-color: rgba(77, 141, 255, 0.35);
+  color: var(--veloop-blue);
+}
+
+.upgrade-drawer__hint {
+  font-size: 12px;
+  color: var(--veloop-text-tertiary);
+  margin: 0 0 10px;
+}
+
+.upgrade-drawer__error {
+  background: rgba(239, 90, 111, 0.12);
+  border: 1px solid rgba(239, 90, 111, 0.3);
+  color: var(--veloop-danger);
+  font-size: 12px;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 10px;
+}

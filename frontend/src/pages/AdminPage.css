@@ -1,0 +1,115 @@
+.admin-page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px 20px 60px;
+  min-height: 100vh;
+}
+
+.admin-page__header h1 {
+  font-size: 20px;
+  margin-bottom: 14px;
+}
+
+.admin-page__tabs {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  margin-bottom: 20px;
+}
+
+.admin-page__tab {
+  flex: 0 0 auto;
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  background: var(--veloop-surface-1);
+  border: 1px solid var(--veloop-border);
+  color: var(--veloop-text-secondary);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.admin-page__tab--active {
+  background: var(--veloop-blue-soft);
+  border-color: rgba(77, 141, 255, 0.35);
+  color: var(--veloop-blue);
+}
+
+.admin-page__loading {
+  color: var(--veloop-text-tertiary);
+  font-size: 13px;
+  padding: 12px 0;
+}
+
+.admin-panel h3 {
+  font-size: 14px;
+  margin: 20px 0 8px;
+  color: var(--veloop-text-secondary);
+}
+
+.admin-panel h3:first-child {
+  margin-top: 0;
+}
+
+.admin-panel__hint {
+  font-size: 12px;
+  color: var(--veloop-text-tertiary);
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.admin-panel__editor {
+  width: 100%;
+  min-height: 420px;
+  background: #0f1122;
+  color: #d8e0ff;
+  border: 1px solid var(--veloop-border);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 12px;
+  line-height: 1.6;
+  resize: vertical;
+}
+
+.admin-panel__reason {
+  width: 100%;
+  margin-top: 10px;
+  background: var(--veloop-surface-1);
+  border: 1px solid var(--veloop-border);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  color: var(--veloop-text-primary);
+  font-size: 13px;
+}
+
+.admin-panel__save {
+  margin-top: 12px;
+  background: linear-gradient(90deg, var(--veloop-gold), #ffd77a);
+  color: var(--veloop-body);
+  font-weight: 800;
+  border: none;
+  border-radius: var(--radius-pill);
+  padding: 11px 22px;
+  font-size: 13px;
+}
+
+.admin-panel__message {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--veloop-blue);
+}
+
+.admin-panel__stat-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.admin-panel__stat-list li {
+  padding: 8px 12px;
+  background: var(--veloop-surface-1);
+  border-radius: var(--radius-sm);
+  margin-bottom: 6px;
+  font-size: 13px;
+  color: var(--veloop-text-secondary);
+}

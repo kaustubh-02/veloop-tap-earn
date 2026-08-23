@@ -1,0 +1,117 @@
+:root {
+  /* ---- Base surfaces (spec: platform body color #161827) ---- */
+  --veloop-body: #161827;
+  --veloop-surface-1: #1c1f34;
+  --veloop-surface-2: #22263e;
+  --veloop-surface-raised: #262b47;
+  --veloop-border: rgba(255, 255, 255, 0.08);
+  --veloop-border-strong: rgba(255, 255, 255, 0.14);
+
+  /* ---- Accents ---- */
+  --veloop-gold: #f2b544;
+  --veloop-gold-soft: rgba(242, 181, 68, 0.16);
+  --veloop-gold-glow: rgba(242, 181, 68, 0.35);
+  --veloop-blue: #4d8dff;
+  --veloop-blue-soft: rgba(77, 141, 255, 0.16);
+  --veloop-blue-glow: rgba(77, 141, 255, 0.35);
+
+  /* ---- Semantic ---- */
+  --veloop-success: #3ecf8e;
+  --veloop-danger: #ef5a6f;
+  --veloop-text-primary: #f4f5fa;
+  --veloop-text-secondary: #a7acc4;
+  --veloop-text-tertiary: #6c7192;
+
+  /* ---- Currency identity colors (spec: consistent visual identity) ---- */
+  --currency-ve: #f2b544;
+  --currency-sve: #ffd77a;
+  --currency-tokens: #7fd8c9;
+  --currency-gems: #b98cf2;
+  --currency-spins: #4d8dff;
+  --currency-fragments: #ef8ac9;
+
+  /* ---- Typography ---- */
+  --font-display: 'Manrope', 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+
+  /* ---- Radii ---- */
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+  --radius-pill: 999px;
+
+  /* ---- Shadows / glows ---- */
+  --shadow-card: 0 8px 24px rgba(6, 7, 16, 0.35);
+  --shadow-raised: 0 12px 32px rgba(6, 7, 16, 0.45);
+
+  /* ---- Motion ---- */
+  --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fast: 140ms;
+  --duration-medium: 260ms;
+  --duration-slow: 420ms;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(120% 120% at 50% -10%, #1d2140 0%, var(--veloop-body) 55%);
+  color: var(--veloop-text-primary);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  margin: 0;
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: var(--veloop-gold-glow);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Visible keyboard focus ring across the app */
+:focus-visible {
+  outline: 2px solid var(--veloop-blue);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.scrollbar-hidden {
+  scrollbar-width: none;
+}
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}

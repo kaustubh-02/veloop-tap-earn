@@ -1,0 +1,66 @@
+.tap-earn-page {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 20px 16px 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 100vh;
+}
+
+.tap-earn-page--error {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 12px;
+  color: var(--veloop-text-secondary);
+}
+
+.tap-earn-page__retry {
+  background: var(--veloop-blue-soft);
+  border: 1px solid rgba(77, 141, 255, 0.35);
+  color: var(--veloop-blue);
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: var(--radius-pill);
+}
+
+.tap-earn-page__stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 20px 0 10px;
+  position: relative;
+}
+
+.tap-earn-page__indicators {
+  min-height: 20px;
+  display: flex;
+  gap: 8px;
+}
+
+.tap-earn-page__empty-hint {
+  font-size: 12px;
+  color: var(--veloop-text-tertiary);
+  text-align: center;
+  margin: 0;
+}
+
+.tap-earn-page__history-link {
+  background: none;
+  border: none;
+  color: var(--veloop-text-tertiary);
+  font-size: 12px;
+  text-align: center;
+  padding: 6px;
+}
+
+.tap-earn-page__back {
+  background: none;
+  border: none;
+  color: var(--veloop-text-secondary);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 16px 16px 0;
+}

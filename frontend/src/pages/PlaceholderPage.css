@@ -1,0 +1,32 @@
+.placeholder-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.placeholder-page__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 8px;
+  padding: 24px;
+  color: var(--veloop-text-secondary);
+}
+
+.placeholder-page__content h1 {
+  font-size: 20px;
+  color: var(--veloop-text-primary);
+}
+
+.placeholder-page__logout {
+  margin-top: 16px;
+  background: rgba(239, 90, 111, 0.12);
+  border: 1px solid rgba(239, 90, 111, 0.3);
+  color: var(--veloop-danger);
+  font-weight: 700;
+  padding: 10px 24px;
+  border-radius: var(--radius-pill);
+}

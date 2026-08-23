@@ -1,0 +1,59 @@
+.lucky-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 0 4px;
+}
+
+.lucky-modal__wheel {
+  font-size: 56px;
+  filter: drop-shadow(0 0 14px rgba(242, 181, 68, 0.35));
+}
+
+.lucky-modal__wheel--spinning {
+  animation: lucky-spin 900ms cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+@keyframes lucky-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(1080deg);
+  }
+}
+
+.lucky-modal__spin-btn {
+  width: 100%;
+  background: linear-gradient(90deg, var(--veloop-gold), #ffd77a);
+  color: var(--veloop-body);
+  font-weight: 800;
+  font-size: 15px;
+  border: none;
+  border-radius: var(--radius-pill);
+  padding: 14px;
+}
+
+.lucky-modal__spin-btn:disabled {
+  opacity: 0.6;
+}
+
+.lucky-modal__progress {
+  width: 100%;
+}
+
+.lucky-modal__progress-label {
+  font-size: 12px;
+  color: var(--veloop-text-secondary);
+  margin-bottom: 6px;
+  text-align: center;
+}
+
+.lucky-modal__result {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 15px;
+  color: var(--veloop-gold);
+  text-align: center;
+}

@@ -1,0 +1,18 @@
+.streak-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  background: rgba(242, 181, 68, 0.1);
+  border: 1px solid rgba(242, 181, 68, 0.2);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--veloop-gold);
+}
+
+.streak-indicator__flame {
+  font-size: 13px;
+  filter: saturate(1.2);
+}

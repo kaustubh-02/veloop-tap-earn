@@ -1,0 +1,81 @@
+.balance-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.balance-card__identity {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.balance-card__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--veloop-blue), #7db4ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: white;
+  flex-shrink: 0;
+}
+
+.balance-card__name {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--veloop-text-primary);
+}
+
+.balance-card__level {
+  font-size: 12px;
+  color: var(--veloop-text-tertiary);
+}
+
+.balance-card__primary {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  background: var(--veloop-gold-soft);
+  border: 1px solid rgba(242, 181, 68, 0.25);
+  border-radius: var(--radius-pill);
+  padding: 8px 16px;
+  color: var(--veloop-gold);
+}
+
+.balance-card__primary-value {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 18px;
+}
+
+.balance-card__primary-label {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.balance-card__strip {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.balance-card__chip {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--veloop-text-secondary);
+}
+
+.balance-card__chip-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}

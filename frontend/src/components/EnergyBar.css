@@ -1,0 +1,66 @@
+.energy-card {
+  background: var(--veloop-surface-1);
+  border: 1px solid var(--veloop-border);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  box-shadow: var(--shadow-card);
+}
+
+.energy-card__top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.energy-card__label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--veloop-text-secondary);
+}
+
+.energy-card__value {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--veloop-blue);
+  transition: color var(--duration-medium) var(--ease-standard);
+}
+
+.energy-card__value--low {
+  color: var(--veloop-danger);
+}
+
+.energy-card__max {
+  font-weight: 500;
+  font-size: 13px;
+  color: var(--veloop-text-tertiary);
+}
+
+.energy-card__track {
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+
+.energy-card__fill {
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(90deg, var(--veloop-blue) 0%, #7db4ff 100%);
+  transition: width var(--duration-slow) var(--ease-standard);
+}
+
+.energy-card__fill--low {
+  background: linear-gradient(90deg, var(--veloop-danger) 0%, #ff8a97 100%);
+}
+
+.energy-card__bottom {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--veloop-text-tertiary);
+}

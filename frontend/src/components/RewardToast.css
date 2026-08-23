@@ -1,0 +1,75 @@
+.reward-toast {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.reward-toast__pill {
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  font-size: 14px;
+  font-family: var(--font-display);
+  color: var(--veloop-body);
+  white-space: nowrap;
+  animation: reward-float 900ms var(--ease-standard) forwards;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
+.reward-toast__pill--sve,
+.reward-toast__pill--ve {
+  background: var(--veloop-gold);
+}
+.reward-toast__pill--tokens {
+  background: var(--currency-tokens);
+}
+.reward-toast__pill--gems {
+  background: var(--currency-gems);
+}
+.reward-toast__pill--spin {
+  background: var(--currency-spins);
+  color: white;
+}
+.reward-toast__pill--mystery {
+  background: linear-gradient(90deg, #b98cf2, #ef8ac9);
+  animation-delay: 80ms;
+}
+.reward-toast__pill--precision {
+  background: var(--veloop-blue);
+  color: white;
+  animation-delay: 60ms;
+}
+
+@keyframes reward-float {
+  0% {
+    opacity: 0;
+    transform: translateY(6px) scale(0.9);
+  }
+  15% {
+    opacity: 1;
+    transform: translateY(-4px) scale(1);
+  }
+  75% {
+    opacity: 1;
+    transform: translateY(-46px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-64px) scale(0.96);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reward-toast__pill {
+    animation: none;
+    opacity: 1;
+    transform: translateY(-40px);
+  }
+}

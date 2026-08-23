@@ -1,0 +1,58 @@
+.boost-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: var(--veloop-surface-1);
+  border: 1px solid var(--veloop-border);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  color: inherit;
+  position: relative;
+  overflow: hidden;
+}
+
+.boost-card--active {
+  background: linear-gradient(90deg, rgba(77, 141, 255, 0.14), rgba(77, 141, 255, 0.04));
+  border-color: rgba(77, 141, 255, 0.35);
+}
+
+.boost-card__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.boost-card__subtitle {
+  font-size: 12px;
+  color: var(--veloop-text-tertiary);
+  margin-top: 2px;
+}
+
+.boost-card__cta {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--veloop-blue);
+}
+
+.boost-card__pulse {
+  position: absolute;
+  right: -10px;
+  top: -10px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--veloop-blue-glow);
+  filter: blur(18px);
+  animation: boost-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes boost-pulse {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}

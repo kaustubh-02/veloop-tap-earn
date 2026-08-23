@@ -1,0 +1,18 @@
+module.exports = {
+  User: require('./User'),
+  TapState: require('./TapState'),
+  TapEvent: require('./TapEvent'),
+  Upgrade: require('./Upgrade'),
+  Boost: require('./Boost'),
+  Mission: require('./Mission'),
+  UserMission: require('./UserMission'),
+  DailyChallenge: require('./DailyChallenge'),
+  UserDailyChallenge: require('./UserDailyChallenge'),
+  Spin: require('./Spin'),
+  TapSeason: require('./TapSeason'),
+  TapLeagueScore: require('./TapLeagueScore'),
+  RewardLedger: require('./RewardLedger'),
+  AdEvent: require('./AdEvent'),
+  EconomyConfig: require('./EconomyConfig'),
+  ConfigAudit: require('./ConfigAudit'),
+};
