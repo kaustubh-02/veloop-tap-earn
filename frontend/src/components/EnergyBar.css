@@ -1,9 +1,14 @@
 .energy-card {
-  background: var(--veloop-surface-1);
-  border: 1px solid var(--veloop-border);
+  background: linear-gradient(135deg, rgba(77, 141, 255, 0.08), var(--veloop-surface-1) 60%);
+  border: 1px solid rgba(77, 141, 255, 0.22);
   border-radius: var(--radius-md);
   padding: 14px 16px;
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--shadow-card), 0 0 24px rgba(77, 141, 255, 0.08);
+}
+
+.energy-card__icon {
+  filter: drop-shadow(0 0 6px rgba(242, 181, 68, 0.5));
+  margin-right: 2px;
 }
 
 .energy-card__top {
@@ -24,8 +29,9 @@
 .energy-card__value {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 18px;
+  font-size: 22px;
   color: var(--veloop-blue);
+  text-shadow: 0 0 16px rgba(77, 141, 255, 0.35);
   transition: color var(--duration-medium) var(--ease-standard);
 }
 

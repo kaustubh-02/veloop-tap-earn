@@ -110,7 +110,7 @@ async function processTap({ userId, requestId, clientSentAt, precisionTapHit = f
       const rolled = rewardRollService.rollTapReward(config);
       const finalAmount = rewardRollService.applyMultipliers(
         rolled,
-        { efficiency: efficiency.efficiency, boostMultiplier: boost.multiplier },
+        { efficiency: efficiency.efficiency, boostMultiplier: boost.multiplier, tapMultiplier: multitap.tapMultiplier },
         config
       );
 

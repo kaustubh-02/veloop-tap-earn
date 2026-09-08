@@ -1,13 +1,29 @@
 const rewardRollService = require('../services/rewardRollService');
 const defaultConfig = require('../config/tapEconomy.defaults');
 
-describe('rewardRollService.rollTapReward — probability distribution', () => {
+// The live product default is simpleMode: true (guaranteed 1 VE per tap).
+// The probability-distribution tests below exercise the ORIGINAL system,
+// which still exists and can be re-enabled via admin config — so these
+// tests explicitly force simpleMode off rather than relying on the
+// current default.
+const probConfig = { ...defaultConfig, reward: { ...defaultConfig.reward, simpleMode: false } };
+
+describe('rewardRollService.rollTapReward — simple guaranteed mode (live default)', () => {
+  test('always returns exactly 1 VE when simpleMode is on', () => {
+    for (let i = 0; i < 100; i += 1) {
+      const result = rewardRollService.rollTapReward(defaultConfig);
+      expect(result).toEqual({ type: 've', amount: 1 });
+    }
+  });
+});
+
+describe('rewardRollService.rollTapReward — probability distribution (simpleMode off)', () => {
   test('large sample matches configured probabilities within tolerance', () => {
     const N = 200000;
     const counts = { sve: 0, ve: 0, spin: 0, gems: 0, tokens: 0 };
 
     for (let i = 0; i < N; i += 1) {
-      const result = rewardRollService.rollTapReward(defaultConfig);
+      const result = rewardRollService.rollTapReward(probConfig);
       counts[result.type] += 1;
     }
 
@@ -32,7 +48,7 @@ describe('rewardRollService.rollTapReward — probability distribution', () => {
       if (call === 1) return 0.65; // lands in VE bucket (0.6 <= x < 0.8 cumulative)
       return 0.5; // mid step
     };
-    const result = rewardRollService.rollTapReward(defaultConfig, rng);
+    const result = rewardRollService.rollTapReward(probConfig, rng);
     expect(result.type).toBe('ve');
     expect(result.amount).toBeGreaterThanOrEqual(0.6);
     expect(result.amount).toBeLessThanOrEqual(1.7);
@@ -46,7 +62,7 @@ describe('rewardRollService.rollTapReward — probability distribution', () => {
       if (call === 1) return 0.999; // falls into the tokens remainder bucket
       return 0.5;
     };
-    const result = rewardRollService.rollTapReward(defaultConfig, rng);
+    const result = rewardRollService.rollTapReward(probConfig, rng);
     expect(result.type).toBe('tokens');
     expect(result.amount).toBeGreaterThanOrEqual(5);
     expect(result.amount).toBeLessThanOrEqual(100);
@@ -61,7 +77,7 @@ describe('rewardRollService.rollTapReward — probability distribution', () => {
         if (call === 1) return 0.83; // lands in gems bucket
         return Math.random();
       };
-      const result = rewardRollService.rollTapReward(defaultConfig, rng);
+      const result = rewardRollService.rollTapReward(probConfig, rng);
       if (result.type === 'gems') {
         expect(allowed.has(result.amount)).toBe(true);
       }

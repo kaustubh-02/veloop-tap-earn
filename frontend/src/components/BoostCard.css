@@ -1,10 +1,10 @@
 .boost-card {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 12px;
   width: 100%;
-  background: var(--veloop-surface-1);
-  border: 1px solid var(--veloop-border);
+  background: linear-gradient(135deg, rgba(242, 181, 68, 0.06), var(--veloop-surface-1) 65%);
+  border: 1px solid rgba(242, 181, 68, 0.2);
   border-radius: var(--radius-md);
   padding: 12px 16px;
   color: inherit;
@@ -12,9 +12,20 @@
   overflow: hidden;
 }
 
+.boost-card__icon {
+  font-size: 22px;
+  filter: drop-shadow(0 0 8px rgba(242, 181, 68, 0.4));
+  flex-shrink: 0;
+}
+
 .boost-card--active {
-  background: linear-gradient(90deg, rgba(77, 141, 255, 0.14), rgba(77, 141, 255, 0.04));
-  border-color: rgba(77, 141, 255, 0.35);
+  background: linear-gradient(90deg, rgba(77, 141, 255, 0.16), rgba(77, 141, 255, 0.04));
+  border-color: rgba(77, 141, 255, 0.4);
+  box-shadow: 0 0 24px rgba(77, 141, 255, 0.15);
+}
+
+.boost-card > div:last-of-type {
+  flex: 1;
 }
 
 .boost-card__title {

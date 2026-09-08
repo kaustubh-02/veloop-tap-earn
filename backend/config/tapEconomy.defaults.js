@@ -15,6 +15,11 @@ module.exports = {
   // 41.2 Tap reward roll (probabilities must sum to 1)
   // ---------------------------------------------------------------
   reward: {
+    // When true, every accepted tap gives a guaranteed 1 VE (scaled by
+    // multitap/efficiency/boost) instead of rolling the probability table
+    // below. Flip to false via the admin config editor to switch back to
+    // the probability-distribution system without any redeploy.
+    simpleMode: true,
     sve: { probability: 0.6, amount: 1 },
     ve: { probability: 0.2, min: 0.6, max: 1.7, step: 0.1 }, // discrete steps, 1 decimal
     spin: { probability: 0.02, amount: 1 },

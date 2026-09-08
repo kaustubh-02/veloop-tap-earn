@@ -13,22 +13,48 @@
   justify-content: center;
 }
 
+.tap-circle-stage::before {
+  content: '';
+  position: absolute;
+  inset: -28px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--veloop-gold-glow) 0%, transparent 70%);
+  opacity: 0.55;
+  animation: tap-circle-breathe 3.2s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes tap-circle-breathe {
+  0%,
+  100% {
+    transform: scale(0.96);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.06);
+    opacity: 0.7;
+  }
+}
+
 .tap-circle {
   position: relative;
-  width: 220px;
-  height: 220px;
+  z-index: 1;
+  width: 260px;
+  height: 260px;
   border-radius: 50%;
   border: none;
-  background: radial-gradient(circle at 35% 30%, #2c3156 0%, #1b1e36 70%);
+  background: radial-gradient(circle at 35% 28%, #343a68 0%, #191c34 72%);
   box-shadow:
-    0 0 0 1px var(--veloop-border-strong),
-    0 20px 50px rgba(0, 0, 0, 0.45),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    0 0 0 2px rgba(242, 181, 68, 0.4),
+    0 0 60px rgba(242, 181, 68, 0.18),
+    0 24px 60px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  transition: transform var(--duration-fast) var(--ease-standard);
+  transition: transform var(--duration-fast) var(--ease-standard), box-shadow var(--duration-medium) var(--ease-standard);
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
 }
@@ -36,14 +62,27 @@
 .tap-circle::before {
   content: '';
   position: absolute;
-  inset: 6px;
+  inset: 8px;
   border-radius: 50%;
-  border: 1px solid rgba(242, 181, 68, 0.25);
+  border: 1.5px solid rgba(242, 181, 68, 0.35);
+}
+
+.tap-circle::after {
+  content: '';
+  position: absolute;
+  inset: 16px;
+  border-radius: 50%;
+  border: 1px solid rgba(77, 141, 255, 0.18);
 }
 
 .tap-circle:active,
 .tap-circle--pressed {
-  transform: scale(0.96);
+  transform: scale(0.95);
+  box-shadow:
+    0 0 0 2px rgba(242, 181, 68, 0.65),
+    0 0 80px rgba(242, 181, 68, 0.32),
+    0 24px 60px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .tap-circle--disabled {
@@ -69,13 +108,13 @@
   z-index: 2;
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 44px;
+  font-size: 52px;
   letter-spacing: 0.02em;
-  background: linear-gradient(180deg, #ffe8ac 0%, var(--veloop-gold) 60%, #c98a1f 100%);
+  background: linear-gradient(180deg, #fff3d6 0%, var(--veloop-gold) 55%, #c98a1f 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  text-shadow: 0 2px 12px rgba(242, 181, 68, 0.25);
+  text-shadow: 0 2px 16px rgba(242, 181, 68, 0.4);
   user-select: none;
 }
 
@@ -177,10 +216,13 @@
 
 @media (max-width: 420px) {
   .tap-circle {
-    width: 180px;
-    height: 180px;
+    width: 210px;
+    height: 210px;
   }
   .tap-circle__coin {
-    font-size: 36px;
+    font-size: 42px;
+  }
+  .tap-circle-stage::before {
+    inset: -18px;
   }
 }

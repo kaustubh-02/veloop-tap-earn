@@ -282,6 +282,24 @@ write a `ConfigAudit` row. Nothing in the frontend hard-codes an economic
 value — the Upgrade drawer, for example, always reflects whatever the
 backend currently reports.
 
+### Tap reward mode: guaranteed vs probabilistic
+
+`config.reward.simpleMode` (default: `true`) controls how every tap's
+reward is decided:
+
+- **`true` (live default):** every accepted tap gives a guaranteed 1 VE,
+  scaled by the user's current Multitap/Efficiency/Boost multipliers —
+  e.g. at Multitap x2 a tap gives +2 VE and consumes 2 Energy. This is the
+  simple, always-visible-feedback mode the product currently ships with.
+- **`false`:** falls back to the original probability-distribution system
+  from the spec (60% SVE / 20% VE / 2% Spin / 5% Gems / 13% Tokens per
+  tap). No redeploy needed to switch — change it live via
+  `PUT /api/admin/config` or the Admin dashboard's Config tab.
+
+Both modes still go through the same server-authoritative pipeline below
+— energy consumption, anti-abuse checks, and ledger auditing are
+identical either way.
+
 ### Server-authoritative tap processing
 
 `services/tapService.js` implements the exact validation sequence from the

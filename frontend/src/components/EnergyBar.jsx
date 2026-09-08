@@ -16,7 +16,9 @@ export default function EnergyBar({ energy, onEmpty }) {
   return (
     <div className="energy-card">
       <div className="energy-card__top">
-        <span className="energy-card__label">Energy</span>
+        <span className="energy-card__label">
+          <span className="energy-card__icon">⚡</span> Energy
+        </span>
         <span className={`energy-card__value ${isLow ? 'energy-card__value--low' : ''}`}>
           {Math.floor(energy.current)} <span className="energy-card__max">/ {energy.max}</span>
         </span>

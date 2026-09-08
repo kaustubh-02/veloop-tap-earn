@@ -18,6 +18,15 @@ function round1(n) {
  * directly from config so admins can retune without redeploying.
  */
 function rollTapReward(config, rng = Math.random) {
+  // Simple guaranteed mode: every accepted tap gives exactly 1 VE (before
+  // multitap/efficiency/boost scaling, applied by the caller). This is the
+  // mode the product wants live — predictable, always-visible feedback on
+  // every tap, no probability roll. Toggle off via config.reward.simpleMode
+  // to fall back to the original probability-distribution system.
+  if (config.reward.simpleMode) {
+    return { type: 've', amount: 1 };
+  }
+
   const { sve, ve, spin, gems, tokens } = config.reward;
   const roll = rng();
 
@@ -112,9 +121,9 @@ function rollPrecisionTapReward(config, rng = Math.random) {
  * with currency-specific rounding (spec 41.9: "currency-specific
  * rounding... Do not multiply Spins... unless explicitly enabled").
  */
-function applyMultipliers({ type, amount }, { efficiency, boostMultiplier }, config) {
+function applyMultipliers({ type, amount }, { efficiency, boostMultiplier, tapMultiplier }, config) {
   const efficiencyApplies = config.tapEfficiency.appliesTo.includes(type);
-  const multiplier = (efficiencyApplies ? efficiency : 1) * (boostMultiplier || 1);
+  const multiplier = (efficiencyApplies ? efficiency : 1) * (boostMultiplier || 1) * (tapMultiplier || 1);
 
   if (type === 'spin' || multiplier === 1) {
     return amount;

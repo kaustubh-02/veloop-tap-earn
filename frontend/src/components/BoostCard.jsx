@@ -9,6 +9,7 @@ export default function BoostCard({ boost, onActivate, activating }) {
     return (
       <div className="boost-card boost-card--active">
         <span className="boost-card__pulse" />
+        <span className="boost-card__icon">🚀</span>
         <div>
           <div className="boost-card__title">Boost Active — {boost.multiplier}x</div>
           <div className="boost-card__subtitle">
@@ -21,6 +22,7 @@ export default function BoostCard({ boost, onActivate, activating }) {
 
   return (
     <button type="button" className="boost-card" onClick={onActivate} disabled={activating}>
+      <span className="boost-card__icon">🚀</span>
       <div>
         <div className="boost-card__title">Boost</div>
         <div className="boost-card__subtitle">Activate a 30s reward multiplier</div>

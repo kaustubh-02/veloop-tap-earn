@@ -41,17 +41,19 @@
   display: flex;
   align-items: baseline;
   gap: 6px;
-  background: var(--veloop-gold-soft);
-  border: 1px solid rgba(242, 181, 68, 0.25);
+  background: linear-gradient(135deg, rgba(242, 181, 68, 0.18), rgba(242, 181, 68, 0.06));
+  border: 1px solid rgba(242, 181, 68, 0.4);
   border-radius: var(--radius-pill);
-  padding: 8px 16px;
+  padding: 9px 20px;
   color: var(--veloop-gold);
+  box-shadow: 0 0 20px rgba(242, 181, 68, 0.15);
 }
 
 .balance-card__primary-value {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 18px;
+  font-size: 21px;
+  text-shadow: 0 0 12px rgba(242, 181, 68, 0.4);
 }
 
 .balance-card__primary-label {
