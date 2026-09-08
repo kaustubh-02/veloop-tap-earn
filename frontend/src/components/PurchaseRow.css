@@ -3,11 +3,19 @@
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  background: var(--veloop-surface-1);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01)), var(--veloop-glass);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border: 1px solid var(--veloop-border);
   border-radius: var(--radius-md);
   padding: 14px 16px;
   margin-bottom: 10px;
+  transition: transform var(--duration-fast) var(--ease-standard), border-color var(--duration-fast) var(--ease-standard);
+}
+
+.purchase-row:hover {
+  transform: translateY(-2px);
+  border-color: var(--veloop-border-strong);
 }
 
 .purchase-row__title {

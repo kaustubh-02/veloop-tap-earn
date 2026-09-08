@@ -23,7 +23,7 @@ export default function TapLeaguePage() {
   }, []);
 
   return (
-    <div className="league-page">
+    <div className="league-page page-enter">
       <header className="league-page__header">
         <h1 className="league-page__title">Tap League</h1>
         {data?.season ? (

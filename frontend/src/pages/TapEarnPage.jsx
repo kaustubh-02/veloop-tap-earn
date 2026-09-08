@@ -103,7 +103,7 @@ export default function TapEarnPage() {
   const energyEmpty = state?.energy && state.energy.current < 1;
 
   return (
-    <div className="tap-earn-page">
+    <div className="tap-earn-page stagger-in">
       <BalanceCard balances={balances} level={user?.level} displayName={user?.displayName} onOpenWallet={() => {}} />
 
       <EnergyBar energy={state?.energy} onEmpty={refresh} />

@@ -107,7 +107,9 @@
 
 .admin-panel__stat-list li {
   padding: 8px 12px;
-  background: var(--veloop-surface-1);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01)), var(--veloop-glass);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--veloop-border);
   border-radius: var(--radius-sm);
   margin-bottom: 6px;
   font-size: 13px;

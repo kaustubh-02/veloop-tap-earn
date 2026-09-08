@@ -13,7 +13,7 @@ export default function AdminPage() {
   const [tab, setTab] = useState('Config');
 
   return (
-    <div className="admin-page">
+    <div className="admin-page page-enter">
       <header className="admin-page__header">
         <h1>Tap &amp; Earn Admin</h1>
         <nav className="admin-page__tabs">

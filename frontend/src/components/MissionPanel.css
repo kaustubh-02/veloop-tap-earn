@@ -8,10 +8,17 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  background: var(--veloop-surface-1);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01)), var(--veloop-glass);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border: 1px solid var(--veloop-border);
   border-radius: var(--radius-md);
   padding: 12px 14px;
+  transition: transform var(--duration-fast) var(--ease-standard);
+}
+
+.mission-row:hover {
+  transform: translateY(-2px);
 }
 
 .mission-row__info {

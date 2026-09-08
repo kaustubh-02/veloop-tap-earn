@@ -23,14 +23,16 @@
   width: 100%;
   max-width: 480px;
   max-height: 84vh;
-  background: var(--veloop-surface-2);
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01)), var(--veloop-surface-2);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
   border: 1px solid var(--veloop-border-strong);
   border-bottom: none;
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   box-shadow: var(--shadow-raised);
   display: flex;
   flex-direction: column;
-  animation: drawer-slide-up 260ms var(--ease-standard);
+  animation: drawer-slide-up 320ms var(--ease-bounce);
   padding-bottom: env(safe-area-inset-bottom);
 }
 

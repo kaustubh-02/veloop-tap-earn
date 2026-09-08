@@ -10,11 +10,17 @@ import './TapCircle.css';
  * up accepting or rejecting it (spec: "Never freeze the Tap Circle while
  * waiting for a network response; animate immediately and reconcile with
  * authoritative server state").
+ *
+ * Adds a real 3D coin-flip (CSS perspective/rotateY) and a small particle
+ * burst on every accepted press for a premium, physically-responsive feel.
  */
 export default function TapCircle({ onTap, disabled, lastReward, rejection, comboCount, precisionTarget, onPrecisionHit }) {
   const [ripples, setRipples] = useState([]);
+  const [particles, setParticles] = useState([]);
   const [pressed, setPressed] = useState(false);
+  const [flipping, setFlipping] = useState(false);
   const rippleIdRef = useRef(0);
+  const particleIdRef = useRef(0);
 
   const triggerHaptics = useCallback(() => {
     if (typeof navigator !== 'undefined' && navigator.vibrate) {
@@ -26,11 +32,27 @@ export default function TapCircle({ onTap, disabled, lastReward, rejection, comb
     }
   }, []);
 
+  const spawnParticles = useCallback(() => {
+    const batchId = particleIdRef.current++;
+    const burst = Array.from({ length: 8 }, (_, i) => ({
+      id: `${batchId}-${i}`,
+      angle: (360 / 8) * i + Math.random() * 20,
+      distance: 70 + Math.random() * 40,
+      size: 4 + Math.random() * 5,
+    }));
+    setParticles((prev) => [...prev, ...burst]);
+    setTimeout(() => {
+      setParticles((prev) => prev.filter((p) => !burst.find((b) => b.id === p.id)));
+    }, 700);
+  }, []);
+
   const handlePress = useCallback(
     (event) => {
       // Immediate visual feedback, independent of server round-trip.
       setPressed(true);
+      setFlipping(true);
       triggerHaptics();
+      spawnParticles();
 
       const id = rippleIdRef.current++;
       setRipples((prev) => [...prev, { id }]);
@@ -55,8 +77,9 @@ export default function TapCircle({ onTap, disabled, lastReward, rejection, comb
       onTap({ precisionTapHit: precisionHit });
 
       setTimeout(() => setPressed(false), 120);
+      setTimeout(() => setFlipping(false), 480);
     },
-    [onTap, triggerHaptics, precisionTarget, onPrecisionHit]
+    [onTap, triggerHaptics, precisionTarget, onPrecisionHit, spawnParticles]
   );
 
   return (
@@ -70,32 +93,51 @@ export default function TapCircle({ onTap, disabled, lastReward, rejection, comb
       <div className="tap-circle-stage">
         <RewardToast reward={lastReward} />
 
-        <button
-          type="button"
-          className={`tap-circle ${pressed ? 'tap-circle--pressed' : ''} ${disabled ? 'tap-circle--disabled' : ''}`}
-          onPointerDown={handlePress}
-          disabled={disabled}
-          aria-label="Tap to earn VE"
-        >
-          <span className="tap-circle__glow" />
-          <span className="tap-circle__coin">VE</span>
+        <div className="tap-circle-3d">
+          <button
+            type="button"
+            className={`tap-circle ${pressed ? 'tap-circle--pressed' : ''} ${flipping ? 'tap-circle--flipping' : ''} ${disabled ? 'tap-circle--disabled' : ''}`}
+            onPointerDown={handlePress}
+            disabled={disabled}
+            aria-label="Tap to earn VE"
+          >
+            <span className="tap-circle__glow" />
+            <span className="tap-circle__rim" />
+            <span className="tap-circle__coin">VE</span>
+            <span className="tap-circle__shine" />
 
-          {precisionTarget && (
+            {precisionTarget && (
+              <span
+                className="tap-circle__precision-target"
+                style={{
+                  left: `${precisionTarget.x * 100}%`,
+                  top: `${precisionTarget.y * 100}%`,
+                  width: precisionTarget.radius * 2,
+                  height: precisionTarget.radius * 2,
+                }}
+              />
+            )}
+
+            {ripples.map((r) => (
+              <span key={r.id} className="tap-circle__ripple" />
+            ))}
+          </button>
+        </div>
+
+        <div className="tap-circle__particles">
+          {particles.map((p) => (
             <span
-              className="tap-circle__precision-target"
+              key={p.id}
+              className="tap-circle__particle"
               style={{
-                left: `${precisionTarget.x * 100}%`,
-                top: `${precisionTarget.y * 100}%`,
-                width: precisionTarget.radius * 2,
-                height: precisionTarget.radius * 2,
+                '--angle': `${p.angle}deg`,
+                '--distance': `${p.distance}px`,
+                width: p.size,
+                height: p.size,
               }}
             />
-          )}
-
-          {ripples.map((r) => (
-            <span key={r.id} className="tap-circle__ripple" />
           ))}
-        </button>
+        </div>
 
         {rejection && <div className="tap-circle__rejection">{rejection}</div>}
       </div>

@@ -5,8 +5,15 @@
   padding: 10px 14px;
   border-radius: var(--radius-md);
   margin-bottom: 6px;
-  background: var(--veloop-surface-1);
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.005)), var(--veloop-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid transparent;
+  transition: transform var(--duration-fast) var(--ease-standard);
+}
+
+.leaderboard-row:hover {
+  transform: translateX(3px);
 }
 
 .leaderboard-row__rank {

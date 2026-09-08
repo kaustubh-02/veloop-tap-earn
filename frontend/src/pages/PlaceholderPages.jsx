@@ -5,7 +5,7 @@ import './PlaceholderPage.css';
 
 function PlaceholderPage({ title, subtitle }) {
   return (
-    <div className="placeholder-page">
+    <div className="placeholder-page page-enter">
       <div className="placeholder-page__content">
         <h1>{title}</h1>
         <p>{subtitle}</p>
@@ -31,7 +31,7 @@ export function WalletPage() {
 export function ProfilePage() {
   const { user, logout } = useAuth();
   return (
-    <div className="placeholder-page">
+    <div className="placeholder-page page-enter">
       <div className="placeholder-page__content">
         <h1>{user?.displayName}</h1>
         <p>{user?.email}</p>
