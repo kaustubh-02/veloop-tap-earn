@@ -7,6 +7,13 @@ import { tapApi } from '../api/endpoints';
  * animates but never optimistically credits currency (spec 26: "Use
  * optimistic animation only; never optimistically add authoritative
  * currency to the balance"), and reconciles with the server response.
+ *
+ * requestId is generated CLIENT-SIDE (crypto.randomUUID()) rather than
+ * fetched from the server before every tap — fetching it added a second
+ * full network round-trip per tap, which is what made rapid tapping feel
+ * unresponsive (each tap paid for two request/response cycles instead of
+ * one, especially painful when the backend host has any added latency,
+ * e.g. a free-tier host waking from idle).
  */
 export function useTapEarn() {
   const [state, setState] = useState(null);
@@ -36,6 +43,18 @@ export function useTapEarn() {
     refresh();
   }, [refresh]);
 
+  function generateUuid() {
+    if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+      return crypto.randomUUID();
+    }
+    // Minimal RFC4122-ish fallback for older browsers without crypto.randomUUID.
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+      const r = (Math.random() * 16) | 0;
+      const v = c === 'x' ? r : (r & 0x3) | 0x8;
+      return v.toString(16);
+    });
+  }
+
   const sendTap = useCallback(async ({ precisionTapHit = false } = {}) => {
     const now = Date.now();
     // Client-side 200ms lock mirrors the server rule so the UI never even
@@ -51,8 +70,9 @@ export function useTapEarn() {
     lastLocalTapAtRef.current = now;
     inFlightRef.current = true;
 
+    const requestId = generateUuid();
+
     try {
-      const { requestId } = await tapApi.getRequestId();
       const result = await tapApi.sendTap({ requestId, clientSentAt: new Date().toISOString(), precisionTapHit });
 
       setState(result.state);

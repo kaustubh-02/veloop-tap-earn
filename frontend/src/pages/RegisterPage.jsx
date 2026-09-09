@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import VeloopAvatar from '../components/VeloopAvatar';
 import './AuthPages.css';
 
 export default function RegisterPage() {
@@ -29,6 +30,7 @@ export default function RegisterPage() {
   return (
     <div className="auth-page">
       <div className="auth-card">
+        <div className="auth-card__avatar"><VeloopAvatar size={64} /></div>
         <h1 className="auth-card__title">VELoop Rewards</h1>
         <p className="auth-card__subtitle">Create your account</p>
 

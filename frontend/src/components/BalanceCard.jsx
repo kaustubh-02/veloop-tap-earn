@@ -1,4 +1,5 @@
 import React from 'react';
+import VeloopAvatar from './VeloopAvatar';
 import './BalanceCard.css';
 
 const CURRENCY_META = {
@@ -21,7 +22,9 @@ export default function BalanceCard({ balances, level, displayName, onOpenWallet
   return (
     <div className="balance-card">
       <div className="balance-card__identity">
-        <div className="balance-card__avatar">{(displayName || 'V')[0].toUpperCase()}</div>
+        <div className="balance-card__avatar">
+          <VeloopAvatar size={44} initial={(displayName || 'V')[0]} />
+        </div>
         <div>
           <div className="balance-card__name">{displayName}</div>
           <div className="balance-card__level">Level {level}</div>

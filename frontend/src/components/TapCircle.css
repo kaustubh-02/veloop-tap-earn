@@ -41,6 +41,8 @@
   perspective: 900px;
   position: relative;
   z-index: 1;
+  transition: transform 200ms var(--ease-standard);
+  will-change: transform;
 }
 
 .tap-circle {

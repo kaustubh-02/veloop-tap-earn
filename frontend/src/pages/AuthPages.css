@@ -60,6 +60,13 @@
   animation: page-fade-in 480ms var(--ease-bounce) both;
 }
 
+.auth-card__avatar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+  animation: page-fade-in 600ms var(--ease-bounce) both;
+}
+
 .auth-card__title {
   font-size: 24px;
   font-weight: 800;

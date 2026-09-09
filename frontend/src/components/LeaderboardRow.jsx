@@ -1,4 +1,5 @@
 import React from 'react';
+import VeloopAvatar from './VeloopAvatar';
 import './LeaderboardRow.css';
 
 const TOP_TREATMENT = {
@@ -13,7 +14,9 @@ export default function LeaderboardRow({ rank, displayName, level, score, isMe }
   return (
     <div className={`leaderboard-row ${treatment ? treatment.className : ''} ${isMe ? 'leaderboard-row--me' : ''}`}>
       <div className="leaderboard-row__rank">{treatment ? treatment.badge : rank}</div>
-      <div className="leaderboard-row__avatar">{(displayName || '?')[0].toUpperCase()}</div>
+      <div className="leaderboard-row__avatar">
+        <VeloopAvatar size={32} initial={(displayName || '?')[0]} glow={false} />
+      </div>
       <div className="leaderboard-row__info">
         <div className="leaderboard-row__name">{displayName}</div>
         <div className="leaderboard-row__level">Lvl {level}</div>

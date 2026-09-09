@@ -1,5 +1,6 @@
 import React from 'react';
 import BottomNav from '../components/BottomNav';
+import VeloopAvatar from '../components/VeloopAvatar';
 import { useAuth } from '../context/AuthContext';
 import './PlaceholderPage.css';
 
@@ -33,6 +34,7 @@ export function ProfilePage() {
   return (
     <div className="placeholder-page page-enter">
       <div className="placeholder-page__content">
+        <VeloopAvatar size={88} initial={(user?.displayName || 'V')[0]} />
         <h1>{user?.displayName}</h1>
         <p>{user?.email}</p>
         <button type="button" className="placeholder-page__logout" onClick={logout}>

@@ -11,16 +11,20 @@ import './TapCircle.css';
  * waiting for a network response; animate immediately and reconcile with
  * authoritative server state").
  *
- * Adds a real 3D coin-flip (CSS perspective/rotateY) and a small particle
- * burst on every accepted press for a premium, physically-responsive feel.
+ * Adds a real 3D coin-flip (CSS perspective/rotateY) on every accepted
+ * press, a radial particle burst, and a pointer-following 3D tilt on
+ * desktop (mouse position maps to a subtle rotateX/rotateY) for a more
+ * premium, tactile feel.
  */
 export default function TapCircle({ onTap, disabled, lastReward, rejection, comboCount, precisionTarget, onPrecisionHit }) {
   const [ripples, setRipples] = useState([]);
   const [particles, setParticles] = useState([]);
   const [pressed, setPressed] = useState(false);
   const [flipping, setFlipping] = useState(false);
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
   const rippleIdRef = useRef(0);
   const particleIdRef = useRef(0);
+  const stageRef = useRef(null);
 
   const triggerHaptics = useCallback(() => {
     if (typeof navigator !== 'undefined' && navigator.vibrate) {
@@ -44,6 +48,18 @@ export default function TapCircle({ onTap, disabled, lastReward, rejection, comb
     setTimeout(() => {
       setParticles((prev) => prev.filter((p) => !burst.find((b) => b.id === p.id)));
     }, 700);
+  }, []);
+
+  const handleMouseMove = useCallback((event) => {
+    if (!stageRef.current) return;
+    const rect = stageRef.current.getBoundingClientRect();
+    const px = (event.clientX - rect.left) / rect.width - 0.5;
+    const py = (event.clientY - rect.top) / rect.height - 0.5;
+    setTilt({ x: py * -14, y: px * 14 });
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    setTilt({ x: 0, y: 0 });
   }, []);
 
   const handlePress = useCallback(
@@ -90,10 +106,15 @@ export default function TapCircle({ onTap, disabled, lastReward, rejection, comb
         </div>
       )}
 
-      <div className="tap-circle-stage">
+      <div
+        className="tap-circle-stage"
+        ref={stageRef}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+      >
         <RewardToast reward={lastReward} />
 
-        <div className="tap-circle-3d">
+        <div className="tap-circle-3d" style={{ transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)` }}>
           <button
             type="button"
             className={`tap-circle ${pressed ? 'tap-circle--pressed' : ''} ${flipping ? 'tap-circle--flipping' : ''} ${disabled ? 'tap-circle--disabled' : ''}`}
