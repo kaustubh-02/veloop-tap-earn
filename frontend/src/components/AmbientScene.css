@@ -1,0 +1,105 @@
+.ambient-scene {
+  position: absolute;
+  inset: -40px -20px;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+  border-radius: 40px;
+}
+
+.ambient-scene__portal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 340px;
+  height: 340px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(77, 141, 255, 0.14) 0%, transparent 70%);
+  animation: portal-rotate 14s linear infinite;
+}
+
+.ambient-scene__portal::before {
+  content: '';
+  position: absolute;
+  inset: 20px;
+  border-radius: 50%;
+  border: 1px dashed rgba(77, 141, 255, 0.2);
+}
+
+@keyframes portal-rotate {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.ambient-scene__torch {
+  position: absolute;
+  bottom: 10%;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(242, 181, 68, 0.22) 0%, transparent 70%);
+  animation: torch-flicker 2.4s ease-in-out infinite;
+}
+
+.ambient-scene__torch--left {
+  left: 2%;
+}
+
+.ambient-scene__torch--right {
+  right: 2%;
+  animation-delay: -1.2s;
+}
+
+@keyframes torch-flicker {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.12);
+  }
+}
+
+.ambient-scene__coin {
+  position: absolute;
+  bottom: -20px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff3d6 0%, var(--veloop-gold) 55%, #c98a1f 100%);
+  box-shadow: 0 0 8px rgba(242, 181, 68, 0.4);
+  opacity: 0;
+  animation-name: coin-float-up;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes coin-float-up {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.85;
+  }
+  90% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-420px) rotate(180deg);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ambient-scene__portal,
+  .ambient-scene__torch,
+  .ambient-scene__coin {
+    animation: none;
+  }
+}
