@@ -6,6 +6,18 @@
   flex-direction: column;
   gap: 14px;
   min-height: 100vh;
+  position: relative;
+}
+
+.tap-earn-page::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(180deg, rgba(22, 24, 39, 0.55) 0%, rgba(22, 24, 39, 0.88) 55%, var(--veloop-body) 100%),
+    url('/images/portal-bg.jpg') center 15% / cover no-repeat;
+  opacity: 0.55;
 }
 
 .tap-earn-page--error {
@@ -48,6 +60,34 @@
   border: 1px solid rgba(242, 181, 68, 0.35);
   color: var(--veloop-gold-bright);
   box-shadow: 0 0 18px rgba(242, 181, 68, 0.15);
+}
+
+.tap-earn-page__guardian {
+  position: relative;
+  z-index: 1;
+  width: 150px;
+  height: auto;
+  margin-bottom: -34px;
+  filter: drop-shadow(0 10px 24px rgba(242, 181, 68, 0.35));
+  animation: guardian-float 4s ease-in-out infinite;
+  pointer-events: none;
+  user-select: none;
+}
+
+@keyframes guardian-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tap-earn-page__guardian {
+    animation: none;
+  }
 }
 
 .tap-earn-page__indicators {

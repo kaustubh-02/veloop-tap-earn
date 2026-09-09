@@ -117,6 +117,12 @@ export default function TapEarnPage() {
       <div className="tap-earn-page__stage">
         <AmbientScene />
         <div className="tap-earn-page__sign">⚡ TAP TO EARN ⚡</div>
+        <img
+          src="/images/warrior-guardian.png"
+          alt=""
+          aria-hidden="true"
+          className="tap-earn-page__guardian"
+        />
         <BigCoinCounter value={balances?.ve} />
         <div className="tap-earn-page__indicators">
           <StreakIndicator count={state?.streak?.count} />
