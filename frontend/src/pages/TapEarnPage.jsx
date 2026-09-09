@@ -8,6 +8,7 @@ import EnergyBar from '../components/EnergyBar';
 import TapMultiplierCard from '../components/TapMultiplierCard';
 import BoostCard from '../components/BoostCard';
 import TapCircle from '../components/TapCircle';
+import BigCoinCounter from '../components/BigCoinCounter';
 import StreakIndicator from '../components/StreakIndicator';
 import TapShortcuts from '../components/TapShortcuts';
 import BottomNav from '../components/BottomNav';
@@ -113,6 +114,7 @@ export default function TapEarnPage() {
       <BoostCard boost={state?.boost} onActivate={handleActivateBoost} activating={boosting} />
 
       <div className="tap-earn-page__stage">
+        <BigCoinCounter value={balances?.ve} />
         <div className="tap-earn-page__indicators">
           <StreakIndicator count={state?.streak?.count} />
         </div>
